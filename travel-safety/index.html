@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafePass — Travel Safety Companion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <header class="navbar">
+        <div class="nav-inner container">
+            <div class="brand">
+                <span class="brand-icon"><i class="fas fa-shield-halved"></i></span>
+                <div>
+                    <h1>SafePass</h1>
+                    <p>Travel Safety Companion</p>
+                </div>
+            </div>
+            <nav class="nav-links" id="nav-links">
+                <a href="#home" class="active">Home</a>
+                <a href="#checklist">Checklist</a>
+                <a href="#helplines">Helplines</a>
+                <a href="#tips">Safety Tips</a>
+                <a href="#tracker">Trip Tracker</a>
+            </nav>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <!-- ===== HERO / SOS ===== -->
+    <section id="home" class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <span class="hero-tag"><i class="fas fa-location-dot"></i> Stay Prepared, Travel Confident</span>
+                <h2>Your Safety<br>While Travelling</h2>
+                <p>
+                    SafePass helps you prepare for every journey — from smart checklists and
+                    emergency helplines to real-time trip sharing with your loved ones.
+                </p>
+                <div class="hero-actions">
+                    <a href="#tracker" class="btn btn-primary"><i class="fas fa-route"></i> Plan a Trip</a>
+                    <a href="#helplines" class="btn btn-outline"><i class="fas fa-phone"></i> Emergency Numbers</a>
+                </div>
+            </div>
+
+            <!-- SOS Panel -->
+            <div class="sos-card">
+                <h3><i class="fas fa-triangle-exclamation"></i> Emergency SOS</h3>
+                <p class="sos-hint">Tap and hold in an emergency</p>
+                <button id="sos-btn" class="sos-button">
+                    <i class="fas fa-hand"></i>
+                    <span>HOLD FOR SOS</span>
+                </button>
+                <div class="sos-status" id="sos-status">
+                    <i class="fas fa-shield-halved"></i> System Armed
+                </div>
+                <div class="sos-progress"><div class="sos-progress-bar" id="sos-progress-bar"></div></div>
+
+                <div class="sos-info">
+                    <div class="sos-info-item">
+                        <i class="fas fa-location-crosshairs"></i>
+                        <span id="sos-location">Detecting location...</span>
+                    </div>
+                    <div class="sos-info-item">
+                        <i class="fas fa-phone"></i>
+                        <span>Emergency: <strong>112</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FEATURES STRIP ===== -->
+    <section class="features">
+        <div class="container features-grid">
+            <div class="feature">
+                <i class="fas fa-list-check"></i>
+                <h4>Smart Checklists</h4>
+                <p>Never forget essentials for any trip.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-phone-volume"></i>
+                <h4>Live Helplines</h4>
+                <p>Global & local emergency contacts.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-people-roof"></i>
+                <h4>Trip Sharing</h4>
+                <p>Keep family informed of your route.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-shield-heart"></i>
+                <h4>Safety Tips</h4>
+                <p>Expert advice for every traveller.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CHECKLIST ===== -->
+    <section id="checklist" class="section">
+        <div class="container">
+            <div class="section-head">
+                <h2><i class="fas fa-list-check"></i> Pre-Trip Safety Checklist</h2>
+                <p>Customize your list and track your progress.</p>
+            </div>
+
+            <div class="checklist-layout">
+                <div class="card">
+                    <div class="checklist-toolbar">
+                        <input type="text" id="new-item" placeholder="Add a custom item...">
+                        <button id="add-item" class="btn btn-primary"><i class="fas fa-plus"></i></button>
+                    </div>
+                    <ul class="checklist" id="checklist"></ul>
+                    <p id="checklist-empty" class="empty">Your checklist is empty. Add items above or load defaults.</p>
+                    <button id="load-defaults" class="btn btn-outline small"><i class="fas fa-rotate"></i> Load Defaults</button>
+                    <div class="progress-wrap">
+                        <div class="progress-bar" id="checklist-progress"></div>
+                    </div>
+                    <p class="progress-text" id="checklist-count">0 / 0 completed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HELPLINES ===== -->
+    <section id="helplines" class="section alt">
+        <div class="container">
+            <div class="section-head">
+                <h2><i class="fas fa-phone-volume"></i> Emergency Helplines</h2>
+                <p>One tap to call — save these numbers.</p>
+            </div>
+            <div class="helpline-grid" id="helpline-grid"></div>
+        </div>
+    </section>
+
+    <!-- ===== SAFETY TIPS ===== -->
+    <section id="tips" class="section">
+        <div class="container">
+            <div class="section-head">
+                <h2><i class="fas fa-lightbulb"></i> Safety Tips for Travellers</h2>
+                <p>Practical advice to stay secure on the road.</p>
+            </div>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <i class="fas fa-eye"></i>
+                    <h4>Stay Aware</h4>
+                    <p>Keep your phone charged and avoid walking alone in unfamiliar areas at night.</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-share-nodes"></i>
+                    <h4>Share Your Location</h4>
+                    <p>Share live location with a trusted contact before and during long journeys.</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-briefcase"></i>
+                    <h4>Secure Your Belongings</h4>
+                    <p>Use RFID-blocking wallets and keep valuables close, never in back pockets.</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-car"></i>
+                    <h4>Verify Transport</h4>
+                    <p>Confirm ride details and share the trip with someone before you board.</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-hotel"></i>
+                    <h4>Safe Accommodation</h4>
+                    <p>Choose reputable stays and always check room locks and exits on arrival.</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-heart-pulse"></i>
+                    <h4>Carry Essentials</h4>
+                    <p>Keep a whistle, power bank, and a compact first-aid kit within reach.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TRIP TRACKER ===== -->
+    <section id="tracker" class="section alt">
+        <div class="container">
+            <div class="section-head">
+                <h2><i class="fas fa-route"></i> Trip Tracker</h2>
+                <p>Log your current trip and share updates with your circle.</p>
+            </div>
+
+            <div class="tracker-layout">
+                <div class="card">
+                    <h3><i class="fas fa-plus-circle"></i> Start a Trip</h3>
+                    <form id="trip-form" class="trip-form">
+                        <input type="text" id="trip-title" placeholder="Destination / Trip name" required>
+                        <input type="text" id="trip-route" placeholder="Route (e.g. Home → Airport)">
+                        <input type="text" id="trip-contact" placeholder="Contact to share with (name)">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-play"></i> Start Trip</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h3><i class="fas fa-location-dot"></i> Active Trips</h3>
+                    <div id="active-trips"></div>
+                    <p id="no-trips" class="empty">No active trips. Start one to keep your circle posted!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SOS OVERLAY ===== -->
+    <div class="sos-overlay" id="sos-overlay">
+        <div class="sos-overlay-inner">
+            <i class="fas fa-siren sos-overlay-icon"></i>
+            <h2>EMERGENCY ACTIVATED</h2>
+            <p id="overlay-message">Sending alert to your emergency contacts...</p>
+            <div class="overlay-count" id="overlay-count">5</div>
+            <p class="overlay-hint">Calling <strong>112</strong> automatically</p>
+            <button id="cancel-sos" class="btn btn-outline light"><i class="fas fa-xmark"></i> Cancel</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>SafePass &copy; 2024 · Your travel safety companion</p>
+            <p class="footer-note">In a real emergency, always call your local emergency number first.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
