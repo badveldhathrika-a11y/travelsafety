@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vercel Deployment — SmartEdu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .deploy-hero {
+            background: linear-gradient(135deg, #1e2447 0%, #4f6ef7 100%);
+            border-radius: 16px;
+            padding: 40px;
+            color: #fff;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .deploy-hero::after {
+            content: '⚡';
+            position: absolute;
+            right: 30px;
+            bottom: -20px;
+            font-size: 8rem;
+            opacity: 0.15;
+        }
+        .deploy-hero h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        .deploy-hero p {
+            opacity: 0.9;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+        .badge-deploy {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 14px;
+            font-weight: 600;
+        }
+        .code-block {
+            background: #1e2447;
+            color: #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+        .code-block .key { color: #7dd3fc; }
+        .code-block .str { color: #86efac; }
+        .code-block .num { color: #fbbf24; }
+        .code-block .punc { color: #94a3b8; }
+        .deploy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .deploy-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 4px 18px rgba(30, 36, 71, 0.06);
+        }
+        .deploy-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 14px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .deploy-card h3 i { color: var(--primary); }
+        .deploy-card ul {
+            list-style: none;
+        }
+        .deploy-card li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .deploy-card li:last-child { border-bottom: none; }
+        .deploy-card li i { color: var(--green); }
+        .step-num {
+            background: var(--primary);
+            color: #fff;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        @media (max-width: 800px) {
+            .deploy-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="brand-icon">🎓</span>
+                <div class="brand-text">
+                    <h1>SmartEdu</h1>
+                    <p>Smart Education Platform</p>
+                </div>
+            </div>
+            <nav class="side-nav">
+                <a class="nav-item" href="index.html"><i class="fas fa-home"></i><span>Dashboard</span></a>
+                <a class="nav-item" href="index.html"><i class="fas fa-users"></i><span>Students</span></a>
+                <a class="nav-item" href="index.html"><i class="fas fa-clipboard-check"></i><span>Attendance</span></a>
+                <a class="nav-item" href="index.html"><i class="fas fa-tasks"></i><span>Assignments</span></a>
+                <a class="nav-item" href="index.html"><i class="fas fa-chart-line"></i><span>Grades</span></a>
+                <a class="nav-item" href="index.html"><i class="fas fa-bullhorn"></i><span>Announcements</span></a>
+                <a class="nav-item active" href="vercel.html"><i class="fas fa-rocket"></i><span>Vercel Deploy</span></a>
+            </nav>
+            <div class="sidebar-footer">
+                <p>SmartEdu &copy; 2024</p>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="deploy-hero">
+                <h2><i class="fas fa-rocket"></i> Vercel Deployment</h2>
+                <p>
+                    SmartEdu is fully configured for seamless deployment on Vercel.
+                    The <code>vercel.json</code> file defines routing rules and caching headers
+                    so your smart education platform loads fast and works flawlessly in production.
+                </p>
+                <span class="badge-deploy"><i class="fas fa-bolt"></i> Vercel Ready</span>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-file-code"></i> vercel.json Configuration</h3>
+                <div class="code-block" id="vercel-json-block"></div>
+            </div>
+
+            <div class="deploy-grid">
+                <div class="deploy-card">
+                    <h3><i class="fas fa-list-check"></i> What This Config Does</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Serves <code>styles.css</code> with immutable caching</li>
+                        <li><i class="fas fa-check"></i> Serves <code>script.js</code> with immutable caching</li>
+                        <li><i class="fas fa-check"></i> Redirects all non-file routes to <code>index.html</code> (SPA)</li>
+                        <li><i class="fas fa-check"></i> Optimized for static hosting with custom headers</li>
+                    </ul>
+                </div>
+                <div class="deploy-card">
+                    <h3><i class="fas fa-terminal"></i> Quick Deploy</h3>
+                    <div class="code-block" style="font-size:0.85rem;">
+                        <span class="punc">#</span> <span class="str">Install Vercel CLI</span><br>
+                        npm i -g vercel<br><br>
+                        <span class="punc">#</span> <span class="str">Deploy to production</span><br>
+                        vercel --prod
+                    </div>
+                </div>
+            </div>
+
+            <div class="deploy-card" style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px;">
+                <h3><i class="fas fa-signs-post"></i> Deployment Steps</h3>
+                <ul>
+                    <li><span class="step-num">1</span> Ensure <code>vercel.json</code> is in the project root</li>
+                    <li><span class="step-num">2</span> Run <code>vercel</code> for preview or <code>vercel --prod</code> for production</li>
+                    <li><span class="step-num">3</span> Connect your Git repository to Vercel for auto-deploys</li>
+                    <li><span class="step-num">4</span> Your SmartEdu platform goes live with a global CDN</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Fetch and display the vercel.json file content
+        fetch('vercel.json')
+            .then(res => res.json())
+            .then(data => {
+                const pretty = JSON.stringify(data, null, 2);
+                const block = document.getElementById('vercel-json-block');
+                block.innerHTML = highlight(pretty);
+            })
+            .catch(() => {
+                const block = document.getElementById('vercel-json-block');
+                block.textContent = 'Unable to load vercel.json';
+            });
+
+        // Simple syntax highlighting for JSON
+        function highlight(json) {
+            return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+                let cls = 'num';
+                if (/^"/.test(match)) {
+                    cls = /:$/.test(match) ? 'key' : 'str';
+                } else if (/true|false|null/.test(match)) {
+                    cls = 'punc';
+                }
+                return '<span class="' + cls + '">' + match + '</span>';
+            }).replace(/[{}\[\],:]/g, '<span class="punc">$&</span>');
+        }
+    </script>
+</body>
+</html>

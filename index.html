@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartEdu — Smart Education Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="brand-icon">🎓</span>
+                <div class="brand-text">
+                    <h1>SmartEdu</h1>
+                    <p>Smart Education Platform</p>
+                </div>
+            </div>
+            <nav class="side-nav">
+                <button class="nav-item active" data-tab="dashboard"><i class="fas fa-home"></i> Dashboard</button>
+                <button class="nav-item" data-tab="students"><i class="fas fa-users"></i> Students</button>
+                <button class="nav-item" data-tab="attendance"><i class="fas fa-clipboard-check"></i> Attendance</button>
+                <button class="nav-item" data-tab="assignments"><i class="fas fa-tasks"></i> Assignments</button>
+                <button class="nav-item" data-tab="grades"><i class="fas fa-chart-line"></i> Grades & Exams</button>
+<button class="nav-item" data-tab="announcements"><i class="fas fa-bullhorn"></i> Announcements</button>
+                <a class="nav-item" href="vercel.html"><i class="fas fa-rocket"></i> Vercel Deploy</a>
+            </nav>
+            <div class="sidebar-footer">
+                <p>SmartEdu &copy; 2024</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Tab -->
+            <section id="dashboard" class="tab-content active">
+                <div class="page-header">
+                    <h2>Dashboard</h2>
+                    <p>Welcome back! Here's your overview.</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue"><i class="fas fa-users"></i></div>
+                        <div class="stat-info">
+                            <h3 id="stat-students">0</h3>
+                            <p>Total Students</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green"><i class="fas fa-check-circle"></i></div>
+                        <div class="stat-info">
+                            <h3 id="stat-attendance">0%</h3>
+                            <p>Avg Attendance</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange"><i class="fas fa-tasks"></i></div>
+                        <div class="stat-info">
+                            <h3 id="stat-assignments">0</h3>
+                            <p>Assignments</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="stat-info">
+                            <h3 id="stat-avg-grade">-</h3>
+                            <p>Avg Grade</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <h3><i class="fas fa-medal"></i> Top Performers</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Name</th>
+                                    <th>Attendance</th>
+                                    <th>Grade</th>
+                                </tr>
+                            </thead>
+                            <tbody id="top-performers"></tbody>
+                        </table>
+                        <p id="no-performers" class="empty">No data yet. Add students and record grades.</p>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-bullhorn"></i> Latest Announcements</h3>
+                        <ul id="latest-announcements" class="announcement-list"></ul>
+                        <p id="no-announcements" class="empty">No announcements yet.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Students Tab -->
+            <section id="students" class="tab-content">
+                <div class="page-header">
+                    <h2>Students</h2>
+                    <p>Manage your student roster.</p>
+                </div>
+                <div class="card">
+                    <h3>Add New Student</h3>
+                    <form id="student-form" class="grid-form">
+                        <input type="text" id="student-name" placeholder="Full Name" required>
+                        <input type="text" id="student-roll" placeholder="Roll Number" required>
+                        <input type="text" id="student-class" placeholder="Class / Section">
+                        <input type="email" id="student-email" placeholder="Email (optional)">
+                        <button type="submit" class="btn primary"><i class="fas fa-plus"></i> Add Student</button>
+                    </form>
+                </div>
+                <div class="card">
+                    <h3>Student List <span id="student-count" class="count-badge"></span></h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Roll</th>
+                                <th>Name</th>
+                                <th>Class</th>
+                                <th>Email</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="student-table-body"></tbody>
+                    </table>
+                    <p id="no-students" class="empty"><i class="fas fa-user-plus"></i> No students yet. Add one above!</p>
+                </div>
+            </section>
+
+            <!-- Attendance Tab -->
+            <section id="attendance" class="tab-content">
+                <div class="page-header">
+                    <h2>Attendance</h2>
+                    <p>Mark and track daily attendance.</p>
+                </div>
+                <div class="card">
+                    <div class="date-row">
+                        <label for="attendance-date">Date:</label>
+                        <input type="date" id="attendance-date">
+                    </div>
+                    <p id="attendance-status" class="status"></p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Roll</th>
+                                <th>Name</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendance-table-body"></tbody>
+                    </table>
+                    <p id="no-attendance" class="empty">No students to mark. Add students first!</p>
+                    <button id="save-attendance" class="btn primary"><i class="fas fa-save"></i> Save Attendance</button>
+                </div>
+            </section>
+
+            <!-- Assignments Tab -->
+            <section id="assignments" class="tab-content">
+                <div class="page-header">
+                    <h2>Assignments</h2>
+                    <p>Create and manage homework assignments.</p>
+                </div>
+                <div class="card">
+                    <h3>New Assignment</h3>
+                    <form id="assignment-form" class="grid-form">
+                        <input type="text" id="assign-title" placeholder="Assignment Title" required>
+                        <textarea id="assign-desc" placeholder="Description (optional)" rows="2"></textarea>
+                        <input type="date" id="assign-due" required>
+                        <select id="assign-class">
+                            <option value="">All Classes</option>
+                        </select>
+                        <button type="submit" class="btn primary"><i class="fas fa-plus"></i> Create Assignment</button>
+                    </form>
+                </div>
+                <div class="card">
+                    <h3>Assignment List <span id="assignment-count" class="count-badge"></span></h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Class</th>
+                                <th>Due Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="assignment-table-body"></tbody>
+                    </table>
+                    <p id="no-assignments" class="empty">No assignments yet. Create one above!</p>
+                </div>
+            </section>
+
+            <!-- Grades Tab -->
+            <section id="grades" class="tab-content">
+                <div class="page-header">
+                    <h2>Grades & Exams</h2>
+                    <p>Record exam scores and calculate student grades.</p>
+                </div>
+                <div class="card">
+                    <h3>Record Grade</h3>
+                    <form id="grade-form" class="grid-form">
+                        <select id="grade-student" required>
+                            <option value="">Select Student</option>
+                        </select>
+                        <input type="text" id="grade-subject" placeholder="Subject / Exam" required>
+                        <input type="number" id="grade-score" placeholder="Score (0-100)" min="0" max="100" required>
+                        <button type="submit" class="btn primary"><i class="fas fa-plus"></i> Add Grade</button>
+                    </form>
+                </div>
+                <div class="card">
+                    <h3>Grade Summary</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Roll</th>
+                                <th>Name</th>
+                                <th># Exams</th>
+                                <th>Average</th>
+                                <th>Letter Grade</th>
+                            </tr>
+                        </thead>
+                        <tbody id="grades-table-body"></tbody>
+                    </table>
+                    <p id="no-grades" class="empty">No grades recorded yet.</p>
+                </div>
+            </section>
+
+            <!-- Announcements Tab -->
+            <section id="announcements" class="tab-content">
+                <div class="page-header">
+                    <h2>Announcements</h2>
+                    <p>Share news and updates with students.</p>
+                </div>
+                <div class="card">
+                    <h3>Post Announcement</h3>
+                    <form id="announcement-form">
+                        <input type="text" id="announce-title" placeholder="Announcement Title" required>
+                        <textarea id="announce-body" placeholder="Type your announcement here..." rows="4" required></textarea>
+                        <button type="submit" class="btn primary"><i class="fas fa-paper-plane"></i> Post</button>
+                    </form>
+                </div>
+                <div class="card">
+                    <h3>All Announcements</h3>
+                    <div id="announcement-list"></div>
+                    <p id="no-announcements-full" class="empty">No announcements yet.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
